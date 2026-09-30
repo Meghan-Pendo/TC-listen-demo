@@ -51,7 +51,10 @@ export const Route = createFileRoute("/")({
 function GatedHome() {
   const [email, setEmail] = useState<string | null | undefined>(undefined);
   useEffect(() => {
-    const sync = () => setEmail(getUserEmail());
+    const sync = () => {
+      const e = getUserEmail();
+      setEmail(e && /@(davita\.com|pendo\.io)$/i.test(e) ? e : null);
+    };
     sync();
     window.addEventListener(USER_CHANGE_EVENT, sync);
     return () => window.removeEventListener(USER_CHANGE_EVENT, sync);
