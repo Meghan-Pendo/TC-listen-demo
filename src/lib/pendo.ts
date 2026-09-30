@@ -14,7 +14,7 @@ export type PendoConfig = {
 
 export const DEFAULT_PENDO_CONFIG: PendoConfig = {
   // Public Pendo app key (safe to ship client-side).
-  apiKey: "5ee24073-a359-4964-9d8d-8f125cc680c9",
+  apiKey: "7d291d57-8efb-4ba1-b416-331444ec08f6",
   visitorId: "teammate.demo@davita.com",
   accountId: "DaVita",
 };
