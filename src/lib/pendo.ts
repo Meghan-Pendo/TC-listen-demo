@@ -21,6 +21,9 @@ export const DEFAULT_PENDO_CONFIG: PendoConfig = {
 
 const STORAGE_KEY = "pendo-demo-config";
 
+// Previous default app key. Browsers that saved it get the current default instead.
+const RETIRED_API_KEYS = ["5ee24073-a359-4964-9d8d-8f125cc680c9"];
+
 declare global {
   interface Window {
     pendo?: any;
@@ -33,7 +36,9 @@ export function loadPendoConfig(): PendoConfig {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_PENDO_CONFIG;
     const merged = { ...DEFAULT_PENDO_CONFIG, ...JSON.parse(raw) } as PendoConfig;
-    if (!merged.apiKey) merged.apiKey = DEFAULT_PENDO_CONFIG.apiKey;
+    if (!merged.apiKey || RETIRED_API_KEYS.includes(merged.apiKey.trim())) {
+      merged.apiKey = DEFAULT_PENDO_CONFIG.apiKey;
+    }
     return merged;
   } catch {
     return DEFAULT_PENDO_CONFIG;
