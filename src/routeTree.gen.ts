@@ -10,17 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as HelpRouteImport } from './routes/help'
 import { Route as SubmitFeedbackRouteImport } from './routes/submit-feedback'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HelpRoute = HelpRouteImport.update({
-  id: '/help',
-  path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SubmitFeedbackRoute = SubmitFeedbackRouteImport.update({
@@ -31,31 +25,27 @@ const SubmitFeedbackRoute = SubmitFeedbackRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/help': typeof HelpRoute
   '/submit-feedback': typeof SubmitFeedbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/help': typeof HelpRoute
   '/submit-feedback': typeof SubmitFeedbackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/help': typeof HelpRoute
   '/submit-feedback': typeof SubmitFeedbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/help' | '/submit-feedback'
+  fullPaths: '/' | '/submit-feedback'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/help' | '/submit-feedback'
-  id: '__root__' | '/' | '/help' | '/submit-feedback'
+  to: '/' | '/submit-feedback'
+  id: '__root__' | '/' | '/submit-feedback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HelpRoute: typeof HelpRoute
   SubmitFeedbackRoute: typeof SubmitFeedbackRoute
 }
 
@@ -66,13 +56,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/help': {
-      id: '/help'
-      path: '/help'
-      fullPath: '/help'
-      preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/submit-feedback': {
@@ -87,7 +70,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HelpRoute: HelpRoute,
   SubmitFeedbackRoute: SubmitFeedbackRoute,
 }
 export const routeTree = rootRouteImport
