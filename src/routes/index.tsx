@@ -159,15 +159,9 @@ function Index({ email }: { email: string }) {
             Tx
           </span>
           <Settings className="h-5 w-5 opacity-90" />
-          <button
-            type="button"
-            id="suitebar-help"
-            data-pendo-id="suitebar-help"
-            className="suitebar-help rounded p-1 hover:bg-sp-bar-foreground/15"
-            aria-label="Help"
-          >
+          <span id="suitebar-help" data-pendo-id="suitebar-help" className="suitebar-help">
             <HelpCircle className="h-5 w-5 opacity-90" />
-          </button>
+          </span>
 
           <span className="h-8 w-8 rounded-full bg-sp-bar-foreground/30" aria-hidden />
         </div>
